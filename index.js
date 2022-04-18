@@ -2,6 +2,7 @@
 
 let vendor = '';
 let payType = '';
+let withTip = null;
 let fromDate = '2017-01-01';
 let toDate = '2017-12-31';
 
@@ -12,21 +13,22 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 const fromDateInput = document.getElementById('time-from');
 const toDateInput = document.getElementById('time-to');
-
-const areParamsSetted = () => {
-  return vendor !== '' && fromDate !== '';
-};
+const tipCheckbox = document.getElementById('tip');
 
 const getData = async () => {
   const url = new URL('https://api.tinybird.co/v0/pipes/yellow_tripdata_2017_pipe.json');
   url.searchParams.append(
     'q',
     `
-    select sum(total_amount) as total_earnings,
-    avg(trip_distance) as avg_trip_distance
+    select sum(total_amount) as total_amount,
+    count(*) as total_trips,
+    sum(trip_distance) as total_distance,
+    avg(trip_distance) as avg_trip_distance,
+    avg(datediff(minute, tpep_pickup_datetime, tpep_dropoff_datetime)) as avg_trip_time
     from _ where tpep_pickup_datetime between '${fromDate} 00:00:00' and '${toDate} 23:59:59'
     ${vendor !== '' ? `and vendorid=${vendor}` : ''}
     ${payType !== '' ? `and payment_type=${payType}` : ''}
+    ${withTip ? 'and tip_amount>0' : ''}
     `
   );
   const result = await fetch(url, {
@@ -41,8 +43,12 @@ const getData = async () => {
 
   if (result && result.data) {
     const data = result.data[0];
-    document.getElementById('total').innerHTML = formatter.format(data.total_earnings);
+    document.getElementById('total_trips').innerHTML = `${data.total_trips.toLocaleString()} trips`;
+    document.getElementById('total_amount').innerHTML = formatter.format(data.total_amount);
+    document.getElementById('cost_per_trip').innerHTML = formatter.format(data.total_amount / data.total_trips);
     document.getElementById('distance').innerHTML = `${data.avg_trip_distance.toFixed(2)} miles`;
+    document.getElementById('cost_per_mile').innerHTML = formatter.format(data.total_distance / data.total_amount);
+    document.getElementById('duration').innerHTML = `${data.avg_trip_time.toFixed(2)} mins`;
   }
 };
 
@@ -149,8 +155,23 @@ const onDateChangeHandler = (e, dateDirection) => {
   getData();
 };
 
+const tipClickHandler = () => {
+  const isChecked = tipCheckbox.checked;
+
+  if (isChecked) {
+    withTip = isChecked;
+    setQueryParam('with_tip', isChecked);
+  } else {
+    withTip = null;
+    resetParams('with_tip');
+  }
+
+  getData();
+};
+
 fromDateInput.addEventListener('change', (e) => onDateChangeHandler(e, 'from'));
 toDateInput.addEventListener('change', (e) => onDateChangeHandler(e, 'to'));
+tipCheckbox.addEventListener('input', tipClickHandler);
 
 document.getElementsByName('vendor-group').forEach((radioInput) => {
   radioInput.addEventListener('click', vendorClickHandler);

@@ -11,52 +11,81 @@
     <div class="filters">
       <h2>Filters</h2>
       <form class="filters__form">
-        <h3>Driver</h3>
-        <div class="filters__form__vendor">
-          <div>
-            <input type="radio" id="vendor-all" name="vendor-group" value="" checked />
-            <label for="vendor-all">All drivers</label>
-          </div>
-          <div>
-            <input type="radio" id="vendor-1" name="vendor-group" value="1" />
-            <label for="vendor-1">Driver 1</label>
-          </div>
-          <div>
-            <input type="radio" id="vendor-2" name="vendor-group" value="2" />
-            <label for="vendor-2">Driver 2</label>
+        <div class="filters__form__filter">
+          <h3>Driver</h3>
+          <div class="filters__form__vendor">
+            <div>
+              <input type="radio" id="vendor-all" name="vendor-group" value="" checked />
+              <label for="vendor-all">All</label>
+            </div>
+            <div>
+              <input type="radio" id="vendor-1" name="vendor-group" value="1" />
+              <label for="vendor-1">1</label>
+            </div>
+            <div>
+              <input type="radio" id="vendor-2" name="vendor-group" value="2" />
+              <label for="vendor-2">2</label>
+            </div>
           </div>
         </div>
-        <h3>Date</h3>
-        <div class="filters__form__time">
-          <label for="time-from">From</label>
-          <input type="date" name="time-from" id="time-from" value="2017-01-01" min="2017-01-01" max="2017-12-31" />
-          <label for="time-to">To</label>
-          <input type="date" name="time-to" id="time-to" value="2017-12-31" min="2017-01-01" max="2017-12-31" />
+        <div class="filters__form__filter">
+          <h3>Date</h3>
+          <div class="filters__form__time">
+            <label for="time-from">From</label>
+            <input type="date" name="time-from" id="time-from" value="2017-01-01" min="2017-01-01" max="2017-12-31" />
+            <label for="time-to">To</label>
+            <input type="date" name="time-to" id="time-to" value="2017-12-31" min="2017-01-01" max="2017-12-31" />
+          </div>
         </div>
-        <h3>Pay type</h3>
-        <div class="filters__form__pay-type">
-          <div>
-            <input type="radio" id="pay-type-all" name="pay-type-group" value="" checked />
-            <label for="pay-type-all">All pay types</label>
+        <div class="filters__form__filter">
+          <h3>Pay type</h3>
+          <div class="filters__form__pay-type">
+            <div>
+              <input type="radio" id="pay-type-all" name="pay-type-group" value="" checked />
+              <label for="pay-type-all">All</label>
+            </div>
+            <div>
+              <input type="radio" id="pay-type-1" name="pay-type-group" value="1" />
+              <label for="pay-type-1">Card</label>
+            </div>
+            <div>
+              <input type="radio" id="pay-type-2" name="pay-type-group" value="2" />
+              <label for="pay-type-2">Cash</label>
+            </div>
           </div>
-          <div>
-            <input type="radio" id="pay-type-1" name="pay-type-group" value="1" />
-            <label for="pay-type-1">Card</label>
-          </div>
-          <div>
-            <input type="radio" id="pay-type-2" name="pay-type-group" value="2" />
-            <label for="pay-type-2">Cash</label>
+        </div>
+        <div class="filters__form__filter">
+          <h3>Tips</h3>
+          <div class="filters__form__tips">
+            <div>
+              <input type="checkbox" id="tip" />
+              <label for="tip">Only with tip</label>
+            </div>
           </div>
         </div>
       </form>
     </div>
     <div class="widget">
       <h2>Data</h2>
-      <div>
-        <h3>💰 Total earnings</h3>
-        <p id="total"></p>
-        <h3>🚕 Trip distance (average)</h3>
-        <p id="distance"></p>
+      <div class="widget__data">
+        <div class="widget__data__column">
+          <h3>🔖 Total trips</h3>
+          <p id="total_trips"></p>
+          <h3>💰 Total earnings</h3>
+          <p id="total_amount"></p>
+        </div>
+        <div class="widget__data__column">
+          <h3>💸 Cost per trip</h3>
+          <p id="cost_per_trip"></p>
+          <h3>💶 Cost per mile</h3>
+          <p id="cost_per_mile"></p>
+        </div>
+        <div class="widget__data__column">
+          <h3>🚕 Trip distance (average in miles)</h3>
+          <p id="distance"></p>
+          <h3>🏁 Trip duration (average in mins)</h3>
+          <p id="duration"></p>
+        </div>
       </div>
     </div>
     <script src="./index.js"></script>

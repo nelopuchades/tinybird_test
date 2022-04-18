@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "format": "npx prettier --write .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "npx prettier --write ."
   },
   "keywords": [],
   "author": "",

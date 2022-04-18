@@ -5,8 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tinybird Widget</title>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+    <form class="form">
+      <div class="form__vendor">
+        <div>
+          <input
+            type="radio"
+            id="vendor-all"
+            name="vendor-group"
+            value=""
+            checked
+          />
+          <label for="vendor-all">All</label>
+        </div>
+        <div>
+          <input type="radio" id="vendor-1" name="vendor-group" value="1" />
+          <label for="vendor-1">Driver 1</label>
+        </div>
+        <div>
+          <input type="radio" id="vendor-2" name="vendor-group" value="2" />
+          <label for="vendor-2">Driver 2</label>
+        </div>
+      </div>
+    </form>
+    <div class="widget">
+      <div class="widget__data">
+        <h2>Total earnings</h2>
+        <p id="total"></p>
+      </div>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>

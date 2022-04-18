@@ -1,5 +1,7 @@
 "use strict";
 
+console.log("probando probando");
+
 let vendor = "";
 let payType = "";
 let withTip = null;
@@ -212,3 +214,5 @@ document.getElementsByName("vendor-group").forEach((radioInput) => {
 document.getElementsByName("pay-type-group").forEach((radioInput) => {
   radioInput.addEventListener("click", onPayTypeChangeHandler);
 });
+
+window.addEventListener("DOMContentLoaded", () => onBodyLoad());

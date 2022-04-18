@@ -1,4 +1,8 @@
-.form__vendor {
+.filters {
+  text-align: center;
+}
+
+.filters__form__vendor {
   display: flex;
   justify-content: center;
 }

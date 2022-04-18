@@ -8,27 +8,38 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body onload="onBodyLoad()">
-    <form class="form">
-      <div class="form__vendor">
-        <div>
-          <input type="radio" id="vendor-all" name="vendor-group" value="" checked />
-          <label for="vendor-all">All drivers</label>
+    <div class="filters">
+      <h2>Filters</h2>
+      <form class="filters__form">
+        <h3>Driver</h3>
+        <div class="filters__form__vendor">
+          <div>
+            <input type="radio" id="vendor-all" name="vendor-group" value="" checked />
+            <label for="vendor-all">All drivers</label>
+          </div>
+          <div>
+            <input type="radio" id="vendor-1" name="vendor-group" value="1" />
+            <label for="vendor-1">Driver 1</label>
+          </div>
+          <div>
+            <input type="radio" id="vendor-2" name="vendor-group" value="2" />
+            <label for="vendor-2">Driver 2</label>
+          </div>
         </div>
-        <div>
-          <input type="radio" id="vendor-1" name="vendor-group" value="1" />
-          <label for="vendor-1">Driver 1</label>
+        <h3>Times</h3>
+        <div class="filters__form__time">
+          <label for="time-from">From</label>
+          <input type="date" name="time-from" id="time-from" value="2017-01-01" min="2017-01-01" max="2017-12-31" />
+          <label for="time-to">To</label>
+          <input type="date" name="time-to" id="time-to" value="2017-12-31" min="2017-01-01" max="2017-12-31" />
         </div>
-        <div>
-          <input type="radio" id="vendor-2" name="vendor-group" value="2" />
-          <label for="vendor-2">Driver 2</label>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
     <div class="widget">
       <div class="widget__data">
-        <h2>💰 Total earnings</h2>
+        <h3>💰 Total earnings</h3>
         <p id="total"></p>
-        <h2>🚕 Trip distance (average)</h2>
+        <h3>🚕 Trip distance (average)</h3>
         <p id="distance"></p>
       </div>
     </div>

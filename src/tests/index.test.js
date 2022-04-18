@@ -2,8 +2,7 @@ import {
   fireEvent,
   getByText,
   getByLabelText,
-  waitFor,
-  logDOM,
+  getAllByText,
 } from "@testing-library/dom";
 import "@testing-library/jest-dom/extend-expect";
 import { JSDOM } from "jsdom";
@@ -102,6 +101,10 @@ describe("Widget tests", () => {
     expect(
       getByText(container, "🏁 Trip duration (average in mins)")
     ).not.toBeNull();
+  });
+
+  it("renders ⏳ Loading... in each data by default", () => {
+    expect(getAllByText(container, "⏳ Loading...")).toHaveLength(6);
   });
 
   // it("renders totals with default filters", () => {

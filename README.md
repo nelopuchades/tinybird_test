@@ -9,3 +9,5 @@ Run the following command to install the dependencies:
 ```
 npm install
 ```
+
+And open `index.html`

@@ -10,6 +10,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 const fromDateInput = document.getElementById('time-from');
+const toDateInput = document.getElementById('time-to');
 
 const areParamsSetted = () => {
   return vendor !== '' && fromDate !== '';
@@ -101,18 +102,25 @@ const vendorClickHandler = (e) => {
 
 const onDateChangeHandler = (e, dateDirection) => {
   const date = e.target.value;
-  fromDate = date;
+  if (dateDirection === 'from') {
+    fromDate = date;
+    toDateInput.min = date;
+  } else {
+    toDate = date;
+    fromDateInput.max = date;
+  }
 
   if (date) {
-    setQueryParam('from', date);
+    setQueryParam(dateDirection, date);
   } else {
-    resetParams('from');
+    resetParams(dateDirection);
   }
 
   getData();
 };
 
 fromDateInput.addEventListener('change', (e) => onDateChangeHandler(e, 'from'));
+toDateInput.addEventListener('change', (e) => onDateChangeHandler(e, 'to'));
 
 document.getElementsByName('vendor-group').forEach((radioInput) => {
   radioInput.addEventListener('click', vendorClickHandler);

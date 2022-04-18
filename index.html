@@ -7,7 +7,7 @@
     <title>Tinybird Widget</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
-  <body>
+  <body onload="onBodyLoad()">
     <form class="form">
       <div class="form__vendor">
         <div>
@@ -18,7 +18,7 @@
             value=""
             checked
           />
-          <label for="vendor-all">All</label>
+          <label for="vendor-all">All drivers</label>
         </div>
         <div>
           <input type="radio" id="vendor-1" name="vendor-group" value="1" />
@@ -32,8 +32,10 @@
     </form>
     <div class="widget">
       <div class="widget__data">
-        <h2>Total earnings</h2>
+        <h2>💰 Total earnings</h2>
         <p id="total"></p>
+        <h2>🚕 Trip distance (average)</h2>
+        <p id="distance"></p>
       </div>
     </div>
     <script src="./index.js"></script>

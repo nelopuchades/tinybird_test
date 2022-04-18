@@ -32,17 +32,55 @@ const getData = async () => {
 
   if (result && result.data) {
     const data = result.data[0];
-    document.getElementById("total").innerHTML = `💰 ${formatter.format(
+    document.getElementById("total").innerHTML = formatter.format(
       data.total_earnings
-    )}`;
+    );
+    document.getElementById(
+      "distance"
+    ).innerHTML = `${data.avg_trip_distance.toFixed(2)} miles`;
   }
 };
-
-getData();
 
 const vendorClickHandler = (e) => {
   const vendorSelected = e.target.value;
   vendor = vendorSelected;
+
+  if (vendorSelected) {
+    setQueryParam("driver", vendorSelected ? vendorSelected : null);
+  } else {
+    resetParams();
+  }
+
+  getData();
+};
+
+const resetParams = () => {
+  history.pushState(null, "", window.location.pathname);
+};
+
+const setQueryParam = (queryParam, queryValue) => {
+  const searchParams = new URLSearchParams(window.location[queryParam]);
+  searchParams.set(queryParam, queryValue);
+  const newURL = window.location.pathname + "?" + searchParams.toString();
+  history.pushState(null, "", newURL);
+};
+
+const onBodyLoad = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const selectedVendor = searchParams.get("driver");
+  if (selectedVendor) {
+    vendor = selectedVendor;
+    switch (selectedVendor) {
+      case "1":
+      case "2":
+        document.getElementById(`vendor-${selectedVendor}`).checked = true;
+        break;
+      default:
+        document.getElementById("vendor-all").checked = true;
+    }
+  } else {
+    vendor = "";
+  }
   getData();
 };
 

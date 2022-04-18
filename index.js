@@ -1,6 +1,7 @@
 'use strict';
 
 let vendor = '';
+let payType = '';
 let fromDate = '2017-01-01';
 let toDate = '2017-12-31';
 
@@ -25,6 +26,7 @@ const getData = async () => {
     avg(trip_distance) as avg_trip_distance
     from _ where tpep_pickup_datetime between '${fromDate} 00:00:00' and '${toDate} 23:59:59'
     ${vendor !== '' ? `and vendorid=${vendor}` : ''}
+    ${payType !== '' ? `and payment_type=${payType}` : ''}
     `
   );
   const result = await fetch(url, {
@@ -75,6 +77,21 @@ const onBodyLoad = () => {
     vendor = '';
   }
 
+  const payTypeSelected = searchParams.get('pay_type');
+  if (payTypeSelected) {
+    payType = payTypeSelected;
+    switch (payTypeSelected) {
+      case '1':
+      case '2':
+        document.getElementById(`pay-type-${payTypeSelected}`).checked = true;
+        break;
+      default:
+        document.getElementById('pay-type-all').checked = true;
+    }
+  } else {
+    payType = '';
+  }
+
   const fromDateParam = searchParams.get('from');
   if (fromDateParam) {
     fromDate = fromDateParam;
@@ -95,6 +112,19 @@ const vendorClickHandler = (e) => {
     setQueryParam('driver', vendorSelected);
   } else {
     resetParams('driver');
+  }
+
+  getData();
+};
+
+const payTypeClickHandler = (e) => {
+  const payTypeSelected = e.target.value;
+  payType = payTypeSelected;
+
+  if (payTypeSelected) {
+    setQueryParam('pay_type', payTypeSelected);
+  } else {
+    resetParams('pay_type');
   }
 
   getData();
@@ -124,4 +154,8 @@ toDateInput.addEventListener('change', (e) => onDateChangeHandler(e, 'to'));
 
 document.getElementsByName('vendor-group').forEach((radioInput) => {
   radioInput.addEventListener('click', vendorClickHandler);
+});
+
+document.getElementsByName('pay-type-group').forEach((radioInput) => {
+  radioInput.addEventListener('click', payTypeClickHandler);
 });

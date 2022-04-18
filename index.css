@@ -7,6 +7,11 @@
   justify-content: center;
 }
 
-.widget__data {
+.filters__form__pay-type {
+  display: flex;
+  justify-content: center;
+}
+
+.widget {
   text-align: center;
 }

@@ -15,7 +15,7 @@ const fromDateInput = document.getElementById("time-from");
 const toDateInput = document.getElementById("time-to");
 const tipCheckbox = document.getElementById("tip");
 
-const getData = async () => {
+const refreshData = async () => {
   const url = new URL(
     "https://api.tinybird.co/v0/pipes/yellow_tripdata_2017_pipe.json"
   );
@@ -139,7 +139,7 @@ const onBodyLoad = () => {
     tipCheckbox.checked = false;
   }
 
-  getData();
+  refreshData();
 };
 
 const onVendorChangeHandler = (e) => {
@@ -152,7 +152,7 @@ const onVendorChangeHandler = (e) => {
     resetParams("driver");
   }
 
-  getData();
+  refreshData();
 };
 
 const onPayTypeChangeHandler = (e) => {
@@ -165,7 +165,7 @@ const onPayTypeChangeHandler = (e) => {
     resetParams("pay_type");
   }
 
-  getData();
+  refreshData();
 };
 
 const onDateChangeHandler = (e, dateDirection) => {
@@ -184,7 +184,7 @@ const onDateChangeHandler = (e, dateDirection) => {
     resetParams(dateDirection);
   }
 
-  getData();
+  refreshData();
 };
 
 const onTipChangeHandler = () => {
@@ -198,7 +198,7 @@ const onTipChangeHandler = () => {
     resetParams("with_tip");
   }
 
-  getData();
+  refreshData();
 };
 
 fromDateInput.addEventListener("change", (e) => onDateChangeHandler(e, "from"));

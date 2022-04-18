@@ -45,7 +45,9 @@ const getData = async () => {
     const data = result.data[0];
     document.getElementById('total_trips').innerHTML = `${data.total_trips.toLocaleString()} trips`;
     document.getElementById('total_amount').innerHTML = formatter.format(data.total_amount);
-    document.getElementById('cost_per_trip').innerHTML = formatter.format(data.total_amount / data.total_trips);
+    document.getElementById('cost_per_trip').innerHTML = formatter.format(
+      data.total_trips ? data.total_amount / data.total_trips : 0
+    );
     document.getElementById('distance').innerHTML = `${data.avg_trip_distance.toFixed(2)} miles`;
     document.getElementById('cost_per_mile').innerHTML = formatter.format(data.total_distance / data.total_amount);
     document.getElementById('duration').innerHTML = `${data.avg_trip_time.toFixed(2)} mins`;

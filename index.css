@@ -3,10 +3,10 @@ body {
 }
 
 h2 {
-  border-top: 2px solid #1fcc83;
-  border-bottom: 2px solid #1fcc83;
+  border: 2px solid #1fcc83;
   padding: 1em;
   margin: 0;
+  background-color: #d2fceb;
 }
 
 .filters__form {
@@ -59,7 +59,15 @@ h2 {
   margin-right: 3em;
 }
 
-@media only screen and (max-width: 765px) {
+@media only screen and (max-width: 860px) {
+  .filters {
+    margin: 0 1em;
+  }
+
+  .widget {
+    margin: 0 1em;
+  }
+
   .filters__form {
     flex-direction: column;
   }

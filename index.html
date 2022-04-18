@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tinybird Widget</title>
+    <title>Trips Widget</title>
+    <link rel="icon" href="./assets/favicon.ico" />
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body onload="onBodyLoad()">
@@ -15,7 +16,13 @@
           <h3>Driver</h3>
           <div class="filters__form__vendor">
             <div>
-              <input type="radio" id="vendor-all" name="vendor-group" value="" checked />
+              <input
+                type="radio"
+                id="vendor-all"
+                name="vendor-group"
+                value=""
+                checked
+              />
               <label for="vendor-all">All</label>
             </div>
             <div>
@@ -32,24 +39,54 @@
           <h3>Date</h3>
           <div class="filters__form__time">
             <label for="time-from">From</label>
-            <input type="date" name="time-from" id="time-from" value="2017-01-01" min="2017-01-01" max="2017-12-31" />
+            <input
+              type="date"
+              name="time-from"
+              id="time-from"
+              value="2017-01-01"
+              min="2017-01-01"
+              max="2017-12-31"
+            />
             <label for="time-to">To</label>
-            <input type="date" name="time-to" id="time-to" value="2017-12-31" min="2017-01-01" max="2017-12-31" />
+            <input
+              type="date"
+              name="time-to"
+              id="time-to"
+              value="2017-12-31"
+              min="2017-01-01"
+              max="2017-12-31"
+            />
           </div>
         </div>
         <div class="filters__form__filter">
           <h3>Pay type</h3>
           <div class="filters__form__pay-type">
             <div>
-              <input type="radio" id="pay-type-all" name="pay-type-group" value="" checked />
+              <input
+                type="radio"
+                id="pay-type-all"
+                name="pay-type-group"
+                value=""
+                checked
+              />
               <label for="pay-type-all">All</label>
             </div>
             <div>
-              <input type="radio" id="pay-type-1" name="pay-type-group" value="1" />
+              <input
+                type="radio"
+                id="pay-type-1"
+                name="pay-type-group"
+                value="1"
+              />
               <label for="pay-type-1">Card</label>
             </div>
             <div>
-              <input type="radio" id="pay-type-2" name="pay-type-group" value="2" />
+              <input
+                type="radio"
+                id="pay-type-2"
+                name="pay-type-group"
+                value="2"
+              />
               <label for="pay-type-2">Cash</label>
             </div>
           </div>
